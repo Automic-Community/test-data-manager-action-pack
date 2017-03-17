@@ -33,6 +33,7 @@ public class GetJobStatusAction extends AbstractHttpAction {
 
 		JsonObject responseJson = new JsonParser().parse(response.getEntity(String.class)).getAsJsonObject();
 		ConsoleWriter.writeln(responseJson);
+		ConsoleWriter.writeln("UC4RB_TDM_JOBSTATUS ::=" + responseJson.get("status").getAsString());
 
 	}
 
