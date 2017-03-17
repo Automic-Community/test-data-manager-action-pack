@@ -28,6 +28,9 @@ public class Constants {
 	public static final String PASSWORD = "password";
 
 	public static final String SKIP_CERT_VALIDATION = "ssl";
+	public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    public static final String ARA_TIMEZONE = "UTC";
+
 
     private Constants() {
     }

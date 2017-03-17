@@ -80,4 +80,10 @@ public class CommonUtil {
         }
         return ret;
     }
+    
+    public static final String formatDate(final String message) {
+        final StringBuilder sb = new StringBuilder();
+      
+        return sb.toString();
+    }
 }

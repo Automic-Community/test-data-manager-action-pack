@@ -1,5 +1,7 @@
 package com.automic.testdatamanager.validator;
 
+import java.io.File;
+
 import com.automic.testdatamanager.constants.ExceptionConstants;
 import com.automic.testdatamanager.exception.AutomicException;
 import com.automic.testdatamanager.util.CommonUtil;
@@ -38,5 +40,19 @@ public final class TDMValidator {
             throw new AutomicException(errMsg);
         }
     }
+	
+	 public static final void checkFileExists(File file) throws AutomicException {
+	        if (!(file.exists() && file.isFile())) {
+	            throw new AutomicException(String.format(ExceptionConstants.INVALID_FILE, file));
+	        }
+	    }
+
+	    public static void checkDirectoryExists(File filePath, String parameterName) throws AutomicException {
+	        if (!(filePath.exists() && !filePath.isFile())) {
+	            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, parameterName,
+	                    filePath));
+	        }
+	    }
+
 
 }
