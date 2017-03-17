@@ -24,8 +24,8 @@
 </ATTR_VARA>
 <VARA state="1">
 <Variables>
-<row Name="PCK.AUTOMIC_CA_TDM.PUB.ACTION.GET_JOB_STATUS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
-<row Name="PCK.AUTOMIC_CA_TDM.PUB.ACTION.GET_JOB_STATUS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_CA_TDM.PUB.ACTION.GET_PUBLISH_JOB_STATUS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_CA_TDM.PUB.ACTION.GET_PUBLISH_JOB_STATUS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_CA_TDM.PUB.ACTION.SUBMIT_PUBLISH_JOB/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_CA_TDM.PUB.ACTION.SUBMIT_PUBLISH_JOB/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 </Variables>

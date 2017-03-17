@@ -31,7 +31,7 @@ Following actions are supported for CA TDM.
 * Action name: PCK.AUTOMIC_CA_TDM.PUB.ACTION.SUBMIT_PUBLISH_JOB
 * Action Description: This action is used to submit the publish data job in the TDM.
 
-* Action name: PCK.AUTOMIC_CA_TDM.PUB.ACTION.GET_JOB_STATUS
+* Action name: PCK.AUTOMIC_CA_TDM.PUB.ACTION.GET_PUBLISH_JOB_STATUS
 * Action Description: This action is used to get the job status.
 ]]></DOC>
 </DOCU_Docu>
