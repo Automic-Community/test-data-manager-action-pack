@@ -102,16 +102,6 @@
 
 : DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
-
-!-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
-: INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
-
-: SET &UC4RB_LOGGING_PARAMETER# = "Json File Location"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_TDM_FILE#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
-
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
 :INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
@@ -124,10 +114,8 @@
 ! Build java arguments
 : INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.PREPARE_CMD
 
-: SET &UC4RB_TDM_ESCAPED_STRING# = &UC4RB_TDM_FILE#
-: INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -filePath &UC4RB_TDM_ESCAPED_STRING#")
-
+: INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.CREATE_JOSN &UC4RB_TDM_CONFIG_JSON# = &UC4RB_TDM_JSON_CONTENT#
+: SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -filePath &UC4RB_TDM_JSON_FILE_PATH#")
 
 : PRINT &UC4RB_TDM_CMD#
 

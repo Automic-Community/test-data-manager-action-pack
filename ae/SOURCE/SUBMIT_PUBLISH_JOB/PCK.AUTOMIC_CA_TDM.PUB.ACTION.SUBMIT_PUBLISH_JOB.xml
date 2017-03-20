@@ -68,7 +68,7 @@
 <PROMPTSET name="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB">
 <PRPTBOX promptset="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB">
 <ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
-<UC4RB_TDM_FILEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_FILE#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
+<UC4RB_TDM_JSON_CONTENTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_JSON_CONTENT#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -99,7 +99,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="PUBLISH_DATA" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_CA_TDM.PRV.JOB.SUBMIT_PUBLISH_JOB@GENERIC" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="SUBMIT_PUBLISH_JOB" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_CA_TDM.PRV.JOB.SUBMIT_PUBLISH_JOB@GENERIC" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -124,7 +124,7 @@
 <node content="1" id="PVALUE" name="Parent Variables" parent="" type="TASKVALUE">
 <VALUE state="2">
 <Values/>
-<Mode>1</Mode>
+<Mode>0</Mode>
 </VALUE>
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
@@ -145,7 +145,7 @@
 <PROMPTSET name="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB">
 <PRPTBOX promptset="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB">
 <ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
-<UC4RB_TDM_FILEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_FILE#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
+<UC4RB_TDM_JSON_CONTENTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_JSON_CONTENT#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -172,7 +172,21 @@
 <calendars CCTypeAll="0" CCTypeExt="0" CCTypeNone="0" CCTypeOne="1" CaleOn="0"/>
 <postconditions>
 <PostCon>
-<conditions id="CONDITIONS"/>
+<conditions id="CONDITIONS">
+<action active="1" id="EXECUTE OBJECT" once="0" type="A" uiinfo="">
+<params>
+<param altview="0" name="XC_P01" type="V" value="PCK.AUTOMIC_FILESYSTEM.PUB.ACTION.DELETE"/>
+<param altview="0" name="XC_P02" type="S" value="#915032:getobjprompt:0:3"/>
+<param altview="0" name="XC_P03" type="V" value="##911010">
+<param name="AGENTs.00" value="&amp;AGENT#" vname="XC_P03"/>
+<param name="LOGINs.00" value="&amp;LOGIN#" vname="XC_P03"/>
+<param name="UC4RB_DIR_FILE_RM_FAILs.00" value="NO" vname="XC_P03"/>
+<param name="UC4RB_DIR_FILE_RM_NAMEs.00" value="&amp;UC4RB_TDM_JSON_FILE_PATH#" vname="XC_P03"/>
+</param>
+<param altview="0" name="XC_P04" type="V" value="DEL_FILE"/>
+</params>
+</action>
+</conditions>
 </PostCon>
 </postconditions>
 </task>
@@ -208,7 +222,7 @@
 <PROMPTSET name="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB">
 <PRPTBOX promptset="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB">
 <ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
-<UC4RB_TDM_FILEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_FILE#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
+<UC4RB_TDM_JSON_CONTENTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_JSON_CONTENT#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.SUBMIT_PUBLISH_JOB"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -281,7 +295,7 @@
 <node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
 <VALUE state="1">
 <Values/>
-<Mode>1</Mode>
+<Mode>0</Mode>
 </VALUE>
 </node>
 <node content="1" id="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">

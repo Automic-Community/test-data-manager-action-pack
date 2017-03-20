@@ -13,7 +13,7 @@
 :SET &UC4RB_TDM_PATH_JAR#= STR_CAT(&$AGENT_RESOURCES_CLIENT#,"tdm-tool.jar")]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC><![CDATA[This includes attaches the JIRA jar to current agent
+<DOC><![CDATA[This includes attaches the TDM jar to current agent
 It can be used for both Windows and Unix environment]]></DOC>
 </DOCU_Docu>
 </JOBI>

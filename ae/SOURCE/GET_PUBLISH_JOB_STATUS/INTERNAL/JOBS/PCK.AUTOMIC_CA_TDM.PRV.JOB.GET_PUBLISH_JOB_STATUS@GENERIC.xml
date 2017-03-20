@@ -103,15 +103,6 @@
 : DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
-!-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
-: INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.LOGGING_CONNECTION_DETAILS
-
-: SET &UC4RB_LOGGING_PARAMETER# = "Job ID"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_TDM_JOBID#"
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
-
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
 :INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
