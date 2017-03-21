@@ -72,7 +72,10 @@ public abstract class AbstractHttpAction extends AbstractAction {
 			
 		} finally {
 			try{
-				logout();
+				if(null!=this.token){
+					logout();
+				}
+				
 			}catch(Exception e){
 				ConsoleWriter.writeln(e);
 			}
