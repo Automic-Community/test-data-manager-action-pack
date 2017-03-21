@@ -1,10 +1,11 @@
 package com.automic.testdatamanager.actions;
 
+import javax.json.JsonObject;
+
 import com.automic.testdatamanager.exception.AutomicException;
+import com.automic.testdatamanager.util.CommonUtil;
 import com.automic.testdatamanager.util.ConsoleWriter;
 import com.automic.testdatamanager.validator.TDMValidator;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
@@ -12,7 +13,7 @@ public class GetJobStatusAction extends AbstractHttpAction {
 	private static final String endpoint = "/TDMJobService/api/ca/v1/jobs";
 	private String jobId;
 
-	public GetJobStatusAction() {		
+	public GetJobStatusAction() {
 		addOption("jobId", true, "Id of the Job");
 	}
 
@@ -29,11 +30,12 @@ public class GetJobStatusAction extends AbstractHttpAction {
 
 		ConsoleWriter.writeln("Calling url " + webResource.getURI());
 
-		ClientResponse response = webResource.header("Authorization",token).get(ClientResponse.class);
+		ClientResponse response = webResource.header("Authorization", token).get(ClientResponse.class);
 
-		JsonObject responseJson = new JsonParser().parse(response.getEntity(String.class)).getAsJsonObject();
-		ConsoleWriter.writeln(responseJson);
-		ConsoleWriter.writeln("UC4RB_TDM_JOBSTATUS ::=" + responseJson.get("status").getAsString());
+		JsonObject jsonObjectResponse = CommonUtil.jsonObjectResponse(response.getEntityInputStream());
+
+		ConsoleWriter.writeln(jsonObjectResponse);
+		ConsoleWriter.writeln("UC4RB_TDM_JOBSTATUS ::=" + jsonObjectResponse.getString("status"));
 
 	}
 

@@ -3,6 +3,7 @@ package com.automic.testdatamanager.actions;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
 import com.automic.testdatamanager.config.HttpClientConfig;
@@ -13,8 +14,6 @@ import com.automic.testdatamanager.filter.GenericResponseFilter;
 import com.automic.testdatamanager.util.CommonUtil;
 import com.automic.testdatamanager.util.ConsoleWriter;
 import com.automic.testdatamanager.validator.TDMValidator;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -37,16 +36,6 @@ public abstract class AbstractHttpAction extends AbstractAction {
 	 */
 	private String password;
 
-	/**
-	 * Connection timeout in milliseconds
-	 */
-	private int connectionTimeOut;
-
-	/**
-	 * Read timeout in milliseconds
-	 */
-	private int readTimeOut;
-
 	private Client client;
 
 	/**
@@ -62,8 +51,6 @@ public abstract class AbstractHttpAction extends AbstractAction {
 	protected URI baseUrl;
 
 	public AbstractHttpAction() {
-		addOption(Constants.READ_TIMEOUT, true, "Read timeout");
-		addOption(Constants.CONN_TIMEOUT, true, "connection timeout");
 		addOption(Constants.BASE_URL, true, "TDM Portal URL");
 		addOption(Constants.USERNAME, true, "Username for Login into TDM Portal");
 		addOption(Constants.PASSWORD, true, "Password for Login into TDM Portal");
@@ -102,13 +89,6 @@ public abstract class AbstractHttpAction extends AbstractAction {
 
 			this.baseUrl = new URI(temp);
 
-			this.connectionTimeOut = CommonUtil.parseStringValue(getOptionValue(Constants.CONN_TIMEOUT),
-					Constants.MINUS_ONE);
-			TDMValidator.lessThan(connectionTimeOut, Constants.ZERO, "Connect Timeout");
-
-			this.readTimeOut = CommonUtil.parseStringValue(getOptionValue(Constants.READ_TIMEOUT), Constants.MINUS_ONE);
-			TDMValidator.lessThan(readTimeOut, Constants.ZERO, "Read Timeout");
-
 			this.skipCertValidation = CommonUtil.convert2Bool(getOptionValue(Constants.SKIP_CERT_VALIDATION));
 
 		} catch (URISyntaxException e) {
@@ -133,7 +113,7 @@ public abstract class AbstractHttpAction extends AbstractAction {
 	 */
 	protected WebResource getClient() throws AutomicException {
 		if (client == null) {
-			client = HttpClientConfig.getClient(this.connectionTimeOut, this.readTimeOut, this.skipCertValidation);
+			client = HttpClientConfig.getClient(this.skipCertValidation);
 			client.addFilter(new GenericResponseFilter());
 		}
 		return client.resource(baseUrl);
@@ -151,9 +131,10 @@ public abstract class AbstractHttpAction extends AbstractAction {
 		ClientResponse response = webResource.header("Authorization", encodeUserNamePasswordToBase64())
 				.post(ClientResponse.class);
 
-		JsonObject responseJson = new JsonParser().parse(response.getEntity(String.class)).getAsJsonObject();
+		JsonObject jsonObjectResponse = CommonUtil.jsonObjectResponse(response.getEntityInputStream());
 
-		this.token = (responseJson.get("token") == null ? null : "Bearer " + responseJson.get("token").getAsString());
+		this.token = (jsonObjectResponse.getString("token") == null ? null
+				: "Bearer " + jsonObjectResponse.getString("token"));
 		if (null == this.token) {
 			throw new AutomicException("Error occured while login into the CA TDM portal,token is empty");
 		}
