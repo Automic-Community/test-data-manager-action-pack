@@ -2,6 +2,7 @@ package com.automic.testdatamanager.actions;
 
 import javax.json.JsonObject;
 
+import com.automic.testdatamanager.constants.Constants;
 import com.automic.testdatamanager.exception.AutomicException;
 import com.automic.testdatamanager.util.CommonUtil;
 import com.automic.testdatamanager.util.ConsoleWriter;
@@ -10,7 +11,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class GetJobStatusAction extends AbstractHttpAction {
-	private static final String endpoint = "/TDMJobService/api/ca/v1/jobs";
 	private String jobId;
 
 	public GetJobStatusAction() {
@@ -24,7 +24,10 @@ public class GetJobStatusAction extends AbstractHttpAction {
 		TDMValidator.checkNotEmpty(jobId, "Id of the Job");
 
 		// request to rest api
-		WebResource webResource = getClient().path(endpoint).path(jobId);
+
+		String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
+		WebResource webResource = getClient().path("TDMJobService").path("api").path("ca").path(apiVersion).path("jobs")
+				.path(jobId);
 
 		// encode username:password to Base64
 

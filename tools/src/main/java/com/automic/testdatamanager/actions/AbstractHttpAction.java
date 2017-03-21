@@ -69,8 +69,14 @@ public abstract class AbstractHttpAction extends AbstractAction {
 		try {
 			login();
 			executeSpecific();
-			logout();
+			
 		} finally {
+			try{
+				logout();
+			}catch(Exception e){
+				ConsoleWriter.writeln(e);
+			}
+			
 			if (client != null) {
 				client.destroy();
 			}

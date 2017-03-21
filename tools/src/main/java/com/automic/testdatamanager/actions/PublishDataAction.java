@@ -5,6 +5,7 @@ import java.io.File;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
+import com.automic.testdatamanager.constants.Constants;
 import com.automic.testdatamanager.exception.AutomicException;
 import com.automic.testdatamanager.util.CommonUtil;
 import com.automic.testdatamanager.util.ConsoleWriter;
@@ -13,7 +14,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class PublishDataAction extends AbstractHttpAction {
-	private static final String endpoint = "/TDMJobService/api/ca/v1/jobs";
 	private String filePath;
 
 	public PublishDataAction() {
@@ -28,7 +28,9 @@ public class PublishDataAction extends AbstractHttpAction {
 		File file = new File(filePath);
 		TDMValidator.checkFileExists(file);
 
-		WebResource webResource = getClient().path(endpoint);
+		String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
+		WebResource webResource = getClient().path("TDMJobService").path("api").path("ca").path(apiVersion)
+				.path("jobs");
 
 		ConsoleWriter.writeln("Calling url " + webResource.getURI());
 

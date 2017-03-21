@@ -37,6 +37,21 @@ public class CommonUtil {
     public static final boolean checkNotEmpty(String field) {
         return field != null && !field.isEmpty();
     }
+    
+    /**
+     * Method to read environment value. If not defined then it returns the default value as specified.
+     * 
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static final String getEnvParameter(final String paramName, String defaultValue) {
+        String val = System.getenv(paramName);
+        if (val == null) {
+            val = defaultValue;
+        }
+        return val;
+    }
 
     /**
      *

@@ -6,7 +6,7 @@ package com.automic.testdatamanager.constants;
  */
 public class Constants {
 
-    public static final String API_VERSION = "v4";
+    public static final String API_VERSION = "v1";
 
     public static final String ACTION = "action";
     public static final String HELP = "help";
@@ -36,6 +36,8 @@ public class Constants {
     
     public static final int CONNECTION_TIMEOUT = 30000;
     public static final int READ_TIMEOUT = 60000;
+
+	public static final String ENV_API_VERSION = "ENV_API_VERSION";
   
 
 
