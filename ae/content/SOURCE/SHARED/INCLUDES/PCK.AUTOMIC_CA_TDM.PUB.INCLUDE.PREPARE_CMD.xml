@@ -21,9 +21,6 @@
 : INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -username &UC4RB_TDM_ESCAPED_STRING#")
 
-! Add read timeout, connection timeout to java arguments
-: SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -readtimeout 30000")
-: SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -connectiontimeout 30000")
 : SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -ssl &UC4RB_TDM_SSL_VALIDATION#")
 
 
