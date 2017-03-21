@@ -57,7 +57,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_TDM_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_BASE_URL#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_TDM_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_PASSWORD#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_TDM_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">YES</UC4RB_TDM_SSL_VALIDATIONs.00>
+<UC4RB_TDM_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_TDM_SSL_VALIDATIONs.00>
 <UC4RB_TDM_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_USERNAME#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -131,7 +131,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_TDM_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_BASE_URL#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_TDM_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_PASSWORD#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_TDM_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">YES</UC4RB_TDM_SSL_VALIDATIONs.00>
+<UC4RB_TDM_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_TDM_SSL_VALIDATIONs.00>
 <UC4RB_TDM_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_USERNAME#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -205,7 +205,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_TDM_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_BASE_URL#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_TDM_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_PASSWORD#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_TDM_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">YES</UC4RB_TDM_SSL_VALIDATIONs.00>
+<UC4RB_TDM_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_TDM_SSL_VALIDATIONs.00>
 <UC4RB_TDM_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_TDM_USERNAME#" promptsetname="PCK.AUTOMIC_CA_TDM.PRV.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -349,7 +349,7 @@ This action is used to submit the data to publish in TDM.
 * Skip SSL Validation		: Skips SSL validation if 'YES' is selected.
 * Username			: Specify username for authentication. E.g. tdmuser
 * Password                      : Specify password for authentication.
-* Parameter File                : Provide full path to the parameter file. Eg. C:/Temp/parfile.txt
+* Json Content                  : Provide full publish submit job json. For more info see the examples
 * Sudo Username                 : The username to be used for the sudo command. 
 * Sudo Password                 : The password to be used for the sudo command.	
 * Overwrite Agent		: Overwrites the default agent

@@ -140,8 +140,8 @@
 : ENDSWITCH
 
 ! Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** PUBLISH DATA ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** PUBLISH DATA ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** SUBMIT PUBLISH JOB ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** SUBMIT PUBLISH JOB ACTION FAILED ********"
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 

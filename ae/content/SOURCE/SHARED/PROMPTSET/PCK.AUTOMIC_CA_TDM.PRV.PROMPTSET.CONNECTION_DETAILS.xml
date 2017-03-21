@@ -112,7 +112,7 @@
     </dynradiogroup></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_TDM_BASE_URLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_BASE_URL#" ReadFromTable="OPSE"></UC4RB_TDM_BASE_URLs.00><UC4RB_TDM_USERNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_USERNAME#" ReadFromTable="OPSE"></UC4RB_TDM_USERNAMEs.00><UC4RB_TDM_PASSWORDs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_PASSWORD#" ReadFromTable="OPSE"></UC4RB_TDM_PASSWORDs.00><UC4RB_TDM_SSL_VALIDATIONs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_SSL_VALIDATION#" ReadFromTable="OPSE">YES</UC4RB_TDM_SSL_VALIDATIONs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_TDM_BASE_URLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_BASE_URL#" ReadFromTable="OPSE"></UC4RB_TDM_BASE_URLs.00><UC4RB_TDM_USERNAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_USERNAME#" ReadFromTable="OPSE"></UC4RB_TDM_USERNAMEs.00><UC4RB_TDM_PASSWORDs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_PASSWORD#" ReadFromTable="OPSE"></UC4RB_TDM_PASSWORDs.00><UC4RB_TDM_SSL_VALIDATIONs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_TDM_SSL_VALIDATION#" ReadFromTable="OPSE">NO</UC4RB_TDM_SSL_VALIDATIONs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
