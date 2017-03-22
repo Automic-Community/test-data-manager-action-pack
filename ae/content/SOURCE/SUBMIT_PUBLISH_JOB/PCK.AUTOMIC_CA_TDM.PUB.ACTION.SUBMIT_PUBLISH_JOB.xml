@@ -167,6 +167,12 @@
 <postconditions>
 <PostCon>
 <conditions id="CONDITIONS">
+<condition active="1" id="RETURN CODE" once="0" type="C" uiinfo="">
+<params>
+<param altview="0" name="XC_P01" type="V" value="="/>
+<param altview="0" name="XC_P02" type="V" value="0"/>
+</params>
+<when active="1" id="RETURN CODE" once="0" type="W" uiinfo="">
 <action active="1" id="EXECUTE OBJECT" once="0" type="A" uiinfo="">
 <params>
 <param altview="0" name="XC_P01" type="V" value="PCK.AUTOMIC_FILESYSTEM.PUB.ACTION.DELETE"/>
@@ -180,6 +186,8 @@
 <param altview="0" name="XC_P04" type="V" value="DEL_FILE"/>
 </params>
 </action>
+</when>
+</condition>
 </conditions>
 </PostCon>
 </postconditions>
@@ -338,7 +346,7 @@
 PCK.AUTOMIC_CA_TDM.PUB.ACTION.SUBMIT_PUBLISH_JOB
 
 = General description =
-This action is used to submit the data to publish in TDM.
+This action is used to submit the data to publish in TDM.Publishing data means creating data in the target database schema or files. When you publish data, the data is generated based on the data generation rules that you define, and the data is added to the tables in the target database schema or files. The target database schema is the connection profile that you select at the time of publishing. The target table must already exist in the schema for the publish to work.
 
 = Failure Conditions =
 (none)
@@ -349,7 +357,7 @@ This action is used to submit the data to publish in TDM.
 * Skip SSL Validation		: Skips SSL validation if 'YES' is selected.
 * Username			: Specify username for authentication. E.g. tdmuser
 * Password                      : Specify password for authentication.
-* Json Content                  : Provide full publish submit job json. For more info see the examples
+* Json Content                  : Provide json to publish data on TDM. For more info see the example
 * Sudo Username                 : The username to be used for the sudo command. 
 * Sudo Password                 : The password to be used for the sudo command.	
 * Overwrite Agent		: Overwrites the default agent
