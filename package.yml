@@ -11,5 +11,5 @@ binaries:
     resources: 
       - name: TDMTOOL
         type: BINARY
-        path: tools/target/tdm-tool.JAR
+        path: tools/target/tdm-tool.jar
         version: 1.0.0

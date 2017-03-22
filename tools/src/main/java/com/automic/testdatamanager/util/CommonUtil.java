@@ -24,7 +24,10 @@ public class CommonUtil {
      */
     public static final String formatErrorMessage(final String message) {
         final StringBuilder sb = new StringBuilder();
-        sb.append("ERROR").append(" | ").append(message);
+        if(null!=message && !message.isEmpty()){
+        	 sb.append("ERROR").append(" | ").append(message);
+        }
+       
         return sb.toString();
     }
 
