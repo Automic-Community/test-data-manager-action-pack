@@ -98,10 +98,8 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[: IF &$PLATFORM# EQ "WINDOWS"
     @echo off
-:ELSE
-: DEFINE &STRING_ARR#, string, 30
 : ENDIF
-
+: DEFINE &STRING_ARR#, string, 30
 
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
