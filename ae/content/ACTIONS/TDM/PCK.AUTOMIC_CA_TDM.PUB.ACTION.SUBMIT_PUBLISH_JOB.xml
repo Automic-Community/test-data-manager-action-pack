@@ -167,12 +167,6 @@
 <postconditions>
 <PostCon>
 <conditions id="CONDITIONS">
-<condition active="1" id="RETURN CODE" once="0" type="C" uiinfo="">
-<params>
-<param altview="0" name="XC_P01" type="V" value="="/>
-<param altview="0" name="XC_P02" type="V" value="0"/>
-</params>
-<when active="1" id="RETURN CODE" once="0" type="W" uiinfo="">
 <action active="1" id="EXECUTE OBJECT" once="0" type="A" uiinfo="">
 <params>
 <param altview="0" name="XC_P01" type="V" value="PCK.AUTOMIC_FILESYSTEM.PUB.ACTION.DELETE"/>
@@ -186,8 +180,6 @@
 <param altview="0" name="XC_P04" type="V" value="DEL_FILE"/>
 </params>
 </action>
-</when>
-</condition>
 </conditions>
 </PostCon>
 </postconditions>
