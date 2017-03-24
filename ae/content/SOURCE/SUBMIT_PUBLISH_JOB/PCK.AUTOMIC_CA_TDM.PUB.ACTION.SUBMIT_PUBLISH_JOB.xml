@@ -357,7 +357,7 @@ This action is used to submit the data to publish in TDM.Publishing data means c
 * Skip SSL Validation		: Skips SSL validation if 'YES' is selected.
 * Username			: Specify username for authentication. E.g. tdmuser
 * Password                      : Specify password for authentication.
-* Json Content                  : Provide json to publish data on TDM. For more info see the example
+* Configuration (JSON)          : Provide json to publish data using TDM. For more info see the example
 * Sudo Username                 : The username to be used for the sudo command. 
 * Sudo Password                 : The password to be used for the sudo command.	
 * Overwrite Agent		: Overwrites the default agent
@@ -380,7 +380,7 @@ This action is used to submit the data to publish in TDM.Publishing data means c
 AE logs will be displayed in the AE report.
 
 = Example =
-Sample parameter file::
+Sample Configuration (JSON)::
 { 
 "name":"Publish_SpartanProfile_BookGenerator",
 "projectId":2346,
