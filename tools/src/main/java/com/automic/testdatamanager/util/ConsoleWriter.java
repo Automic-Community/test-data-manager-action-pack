@@ -50,7 +50,7 @@ public final class ConsoleWriter {
         write(sw.toString());
         newLine();
     }
-    
+
     /**
      * Method to write string to console
      *
@@ -77,7 +77,7 @@ public final class ConsoleWriter {
     private static class ByteWriter {
 
         private static final int IO_BUFFER_SIZE = 4 * 1024;
-        private BufferedOutputStream bos = null;        
+        private BufferedOutputStream bos = null;
 
         public ByteWriter(OutputStream output) {
             bos = new BufferedOutputStream(output, IO_BUFFER_SIZE);

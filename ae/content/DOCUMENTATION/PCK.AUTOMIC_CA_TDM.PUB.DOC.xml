@@ -9,7 +9,8 @@
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[About Automic's CA Test Data Manager(TDM) Package
 ================================
-CA Test Data Manager offers an automated solution to one of the most time-consuming and resource-intensive problems in Continuous Delivery -- creating, maintaining and provisioning of the test data needed to rigorously test evolving applications. CA Test Data Manager uniquely combines elements of data subsetting, masking and synthetic, on-demand data generation to enable testing teams to meet the agile needs of the organization.With this package we automate the given business goal:
+CA Test Data Manager offers an automated solution to one of the most time-consuming and resource-intensive problems in Continuous Delivery -- creating, maintaining and provisioning of the test data needed to rigorously test evolving applications. CA Test Data Manager uniquely combines elements of data subsetting, masking and synthetic, on-demand data generation to enable testing teams to meet the agile needs of the organization.
+With this package we can automate the following
 * Submit Publish Job
 * Get Publish Job Status
 
@@ -26,7 +27,7 @@ CA Test Data Manager offers an automated solution to one of the most time-consum
 
 =Variables=
 PCK.AUTOMIC_CA_TDM.PUB.VARA.PACKAGE_PARAMETERS
-* Connection timeout parameter can be configured in this variable. Value is defined in milliseconds. 0 means no timeout.
+* Connection timeout and read timeout parameter can be configured in this variable. Value is defined in milliseconds. 0 means no timeout.
 * Version of the REST API to be used in TDM, default value is v1.
 
 =Actions=

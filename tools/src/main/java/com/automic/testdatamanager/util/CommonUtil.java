@@ -1,9 +1,15 @@
 package com.automic.testdatamanager.util;
 
 import java.io.InputStream;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonWriter;
+import javax.json.JsonWriterFactory;
+import javax.json.stream.JsonGenerator;
 
 import com.automic.testdatamanager.constants.Constants;
 
@@ -24,10 +30,10 @@ public class CommonUtil {
      */
     public static final String formatErrorMessage(final String message) {
         final StringBuilder sb = new StringBuilder();
-        if(null!=message && !message.isEmpty()){
-        	 sb.append("ERROR").append(" | ").append(message);
+        if (null != message && !message.isEmpty()) {
+            sb.append("ERROR").append(" | ").append(message);
         }
-       
+
         return sb.toString();
     }
 
@@ -40,7 +46,7 @@ public class CommonUtil {
     public static final boolean checkNotEmpty(String field) {
         return field != null && !field.isEmpty();
     }
-    
+
     /**
      * Method to read environment value. If not defined then it returns the default value as specified.
      * 
@@ -90,6 +96,25 @@ public class CommonUtil {
     }
 
     /**
+     * Method to beautify the jsonand write on the console
+     * 
+     * @param jsonObj
+     */
+    public static final String jsonPrettyPrinting(JsonObject jsonObj) {
+        StringWriter stringWriter = new StringWriter();
+
+        Map<String, Boolean> config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+
+        JsonWriterFactory writerFactory = Json.createWriterFactory(config);
+        JsonWriter jsonWriter = writerFactory.createWriter(stringWriter);
+        jsonWriter.writeObject(jsonObj);
+        jsonWriter.close();
+
+        return stringWriter.toString();
+    }
+
+    /**
      * Method to convert YES/NO values to boolean true or false
      * 
      * @param value
@@ -103,34 +128,34 @@ public class CommonUtil {
         }
         return ret;
     }
-    
+
     public static final String formatDate(final String message) {
         final StringBuilder sb = new StringBuilder();
-      
+
         return sb.toString();
     }
-    
+
     /**
-    *
-    * Method to read the value as defined in environment. If value is not valid integer, then it returns the default
-    * value as specified.
-    *
-    * @param paramName
-    * @param defaultValue
-    * @return parameter value
-    */
-   public static final int getEnvParameter(final String paramName, int defaultValue) {
-       String val = System.getenv(paramName);
-       int i;
-       if (val != null) {
-           try {
-               i = Integer.parseInt(val);
-           } catch (final NumberFormatException nfe) {
-               i = defaultValue;
-           }
-       } else {
-           i = defaultValue;
-       }
-       return i;
-   }
+     *
+     * Method to read the value as defined in environment. If value is not valid integer, then it returns the default
+     * value as specified.
+     *
+     * @param paramName
+     * @param defaultValue
+     * @return parameter value
+     */
+    public static final int getEnvParameter(final String paramName, int defaultValue) {
+        String val = System.getenv(paramName);
+        int i;
+        if (val != null) {
+            try {
+                i = Integer.parseInt(val);
+            } catch (final NumberFormatException nfe) {
+                i = defaultValue;
+            }
+        } else {
+            i = defaultValue;
+        }
+        return i;
+    }
 }

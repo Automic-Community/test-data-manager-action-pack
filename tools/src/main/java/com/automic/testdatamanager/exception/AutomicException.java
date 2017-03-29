@@ -22,5 +22,5 @@ public class AutomicException extends Exception {
      */
     public AutomicException(String message) {
         super(message);
-    }    
+    }
 }
