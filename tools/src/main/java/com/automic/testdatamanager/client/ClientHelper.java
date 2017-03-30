@@ -1,6 +1,5 @@
 package com.automic.testdatamanager.client;
 
-
 import com.automic.testdatamanager.actions.AbstractAction;
 import com.automic.testdatamanager.cli.Cli;
 import com.automic.testdatamanager.cli.CliOptions;
@@ -9,10 +8,14 @@ import com.automic.testdatamanager.constants.ExceptionConstants;
 import com.automic.testdatamanager.exception.AutomicException;
 import com.automic.testdatamanager.util.ConsoleWriter;
 
+/**
+ * This class delegates the request to specified action.
+ *
+ */
 public class ClientHelper {
-	private static final String ABSOLUTEPATH = "com.automic.testdatamanager.actions";
-	
-	private ClientHelper() {
+    private static final String ABSOLUTEPATH = "com.automic.testdatamanager.actions";
+
+    private ClientHelper() {
     }
 
     /**

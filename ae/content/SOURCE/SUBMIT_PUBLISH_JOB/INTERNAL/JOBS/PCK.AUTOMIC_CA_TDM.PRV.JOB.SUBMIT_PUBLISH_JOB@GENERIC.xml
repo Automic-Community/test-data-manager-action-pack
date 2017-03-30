@@ -98,10 +98,10 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[: IF &$PLATFORM# EQ "WINDOWS"
     @echo off
+: ELSE
+:   DEFINE &STRING_ARR#, string, 30
+:   INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 : ENDIF
-: DEFINE &STRING_ARR#, string, 30
-
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
 :INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
@@ -126,18 +126,12 @@
 : SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_TDM_PASSWORD#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
 
-
-! Set Execution Environment
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
+: IF &$PLATFORM# EQ "UNIX"
+     export UC4_DECRYPTED_PWD
+: ENDIF
 
 ! Invoking java binary
-: SWITCH &$PLATFORM#
-:   CASE "WINDOWS"
-           &UC4RB_TDM_CMD# -password "%UC4_DECRYPTED_PWD%"
-:   CASE "UNIX"
-           &UC4RB_TDM_CMD# -password "$UC4_DECRYPTED_PWD"
-:   OTHER
-: ENDSWITCH
+&UC4RB_TDM_CMD#
 
 ! Status messages
 : SET &UC4RB_LOGGING_INFO# = "******** SUBMIT PUBLISH JOB ACTION EXECUTED SUCCESSFULLY ********"

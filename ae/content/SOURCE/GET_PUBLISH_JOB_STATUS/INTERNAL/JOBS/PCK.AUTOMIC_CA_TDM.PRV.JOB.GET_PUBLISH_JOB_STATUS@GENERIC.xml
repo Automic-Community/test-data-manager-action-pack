@@ -98,10 +98,10 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[: IF &$PLATFORM# EQ "WINDOWS"
     @echo off
+: ELSE
+:   DEFINE &STRING_ARR#, string, 30
+:   INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 : ENDIF
-
-: DEFINE &STRING_ARR#, string, 30
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
@@ -119,7 +119,6 @@
 : INC PCK.AUTOMIC_CA_TDM.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -jobId &UC4RB_TDM_ESCAPED_STRING#")
 
-
 : PRINT &UC4RB_TDM_CMD#
 
 ! Access key is decrypted and send to jar as argument
@@ -127,18 +126,12 @@
 : SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_TDM_PASSWORD#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
 
-
-! Set Execution Environment
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
+: IF &$PLATFORM# EQ "UNIX"
+     export UC4_DECRYPTED_PWD
+: ENDIF
 
 ! Invoking java binary
-: SWITCH &$PLATFORM#
-:   CASE "WINDOWS"
-           &UC4RB_TDM_CMD# -password "%UC4_DECRYPTED_PWD%"
-:   CASE "UNIX"
-           &UC4RB_TDM_CMD# -password "$UC4_DECRYPTED_PWD"
-:   OTHER
-: ENDSWITCH
+&UC4RB_TDM_CMD#
 
 ! Status messages
 : SET &UC4RB_LOGGING_INFO# = "******** GET PUBLISH JOB STATUS ACTION EXECUTED SUCCESSFULLY ********"
@@ -157,7 +150,9 @@
 <LoginFsc/>
 </OUTPUTSCAN>
 <POST_SCRIPT mode="1" replacementmode="1" state="1">
-<OSCRI><![CDATA[:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
+<OSCRI><![CDATA[:SET &UC4RB_TDM_JOBSTATUS# = ""
+:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
+
 :IF &STATUS# EQ 0
 :    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_TDM_JOBSTATUS*","COL=DELIMITER", 'DELIMITER=*::=*')
 :    PROCESS &HND#
@@ -168,10 +163,8 @@
 :         ENDIF
 :  ENDPROCESS
 :  CLOSE_PROCESS &HND#
-:ELSE
-:    SET &UC4RB_TDM_JOBSTATUS# = ""
 :ENDIF
-:    PUBLISH &UC4RB_TDM_JOBSTATUS#,,"WORKFLOW"
+:PUBLISH &UC4RB_TDM_JOBSTATUS#,,"WORKFLOW"
 ]]></OSCRI>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">

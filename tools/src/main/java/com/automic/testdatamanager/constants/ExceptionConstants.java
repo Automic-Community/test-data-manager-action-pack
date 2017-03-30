@@ -18,8 +18,7 @@ public class ExceptionConstants {
 
  // Certificate errors
     public static final String ERROR_SKIPPING_CERT = "Error skipping the certificate validation";
-    public static final String INVALID_KEYSTORE = "Invalid KeyStore : %s";
-    public static final String SSLCONTEXT_ERROR = "Unable to build secured context : %s";
+    
     
     private ExceptionConstants() {
     }

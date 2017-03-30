@@ -9,12 +9,13 @@
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[About Automic's CA Test Data Manager(TDM) Package
 ================================
-CA Test Data Manager offers an automated solution to one of the most time-consuming and resource-intensive problems in Continuous Delivery?the creating, maintaining and provisioning of the test data needed to rigorously test evolving applications. CA Test Data Manager uniquely combines elements of data subsetting, masking and synthetic, on-demand data generation to enable testing teams to meet the agile needs of the organization.With this package we automate the given business goal:
+CA Test Data Manager offers an automated solution to one of the most time-consuming and resource-intensive problems in Continuous Delivery -- creating, maintaining and provisioning of the test data needed to rigorously test evolving applications. CA Test Data Manager uniquely combines elements of data subsetting, masking and synthetic, on-demand data generation to enable testing teams to meet the agile needs of the organization.
+With this package we can automate the following
 * Submit Publish Job
 * Get Publish Job Status
 
 =Supported CA TDM versions=
-* CA Test Data Manager 3.5
+* 4.0
 
 =Limitations=
 (none)
@@ -25,9 +26,9 @@ CA Test Data Manager offers an automated solution to one of the most time-consum
 * Modify the HTTP timeout parameters as per your environment. By default "CONNECTION_TIMEOUT" is defined as 30000 and "READ_TIMEOUT" is defined as 60000. Both are defined in milliseconds. 0 means no timeout.
 
 =Variables=
-PCK.AUTOMIC_CA_TDM.PRV.VARA.PACKAGE_PARAMETERS
-* Connection timeout parameter can be configured in this variable. Value is defined in milliseconds. 0 means no timeout.
-* Version of the API to be used in TDM REST api. default value is v1.
+PCK.AUTOMIC_CA_TDM.PUB.VARA.PACKAGE_PARAMETERS
+* Connection timeout and read timeout parameter can be configured in this variable. Value is defined in milliseconds. 0 means no timeout.
+* Version of the REST API to be used in TDM, default value is v1.
 
 =Actions=
 Following actions are supported for CA TDM.

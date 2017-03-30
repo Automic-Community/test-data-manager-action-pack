@@ -20,157 +20,149 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.Base64;
 
 /**
- * This class defines the execution of any action.It provides some
- * initializations and validations on common inputs .The child actions will
- * implement its executeSpecific() method as per their own need.
+ * This class defines the execution of any action.It provides some initializations and validations on common inputs .The
+ * child actions will implement its executeSpecific() method as per their own need.
  */
 public abstract class AbstractHttpAction extends AbstractAction {
 
-	/**
-	 * Username for Login into TDM Portal
-	 */
-	private String username;
+    protected String token;
 
-	/**
-	 * Password for Login into TDM Portal
-	 */
-	private String password;
+    /**
+     * Service end point
+     */
+    protected URI baseUrl;
 
-	private Client client;
+    /**
+     * Username for Login into TDM Portal
+     */
+    private String username;
 
-	/**
-	 * Option to skip validation
-	 */
-	private boolean skipCertValidation;
+    /**
+     * Password for Login into TDM Portal
+     */
+    private String password;
 
-	protected String token;
+    private Client client;
 
-	/**
-	 * Service end point
-	 */
-	protected URI baseUrl;
+    /**
+     * Option to skip validation
+     */
+    private boolean skipCertValidation;
 
-	public AbstractHttpAction() {
-		addOption(Constants.BASE_URL, true, "TDM Portal URL");
-		addOption(Constants.USERNAME, true, "Username for Login into TDM Portal");
-		addOption(Constants.PASSWORD, true, "Password for Login into TDM Portal");
-		addOption(Constants.SKIP_CERT_VALIDATION, false, "Skip SSL validation");
+    public AbstractHttpAction() {
+        addOption(Constants.BASE_URL, true, "TDM Portal URL");
+        addOption(Constants.USERNAME, true, "Username for Login into TDM Portal");
+        addOption(Constants.SKIP_CERT_VALIDATION, false, "Skip SSL validation");
+    }
 
-	}
+    /**
+     * This method initializes the arguments and calls the execute method.
+     *
+     * @throws AutomicException
+     *             exception while executing an action
+     */
+    public final void execute() throws AutomicException {
+        prepareCommonInputs();
+        try {
+            login();
+            executeSpecific();
+        } finally {
+            if (null != this.token) {
+                try {
+                    logout();
+                } catch (Exception e) {
+                    ConsoleWriter.writeln(e);
+                }
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+    }
 
-	/**
-	 * This method initializes the arguments and calls the execute method.
-	 *
-	 * @throws AutomicException
-	 *             exception while executing an action
-	 */
-	public final void execute() throws AutomicException {
-		prepareCommonInputs();
-		try {
-			login();
-			executeSpecific();
-			
-		} finally {
-			try{
-				if(null!=this.token){
-					logout();
-				}
-				
-			}catch(Exception e){
-				ConsoleWriter.writeln(e);
-			}
-			
-			if (client != null) {
-				client.destroy();
-			}
-		}
-	}
+    private void prepareCommonInputs() throws AutomicException {
+        String temp = getOptionValue(Constants.BASE_URL);
+        this.username = getOptionValue("username");
+        TDMValidator.checkNotEmpty(username, "Username for Login into TDM Portal");
 
-	private void prepareCommonInputs() throws AutomicException {
-		String temp = getOptionValue(Constants.BASE_URL);
-		try {
+        this.password = System.getenv(Constants.ENV_PASSWORD);
+        this.skipCertValidation = CommonUtil.convert2Bool(getOptionValue(Constants.SKIP_CERT_VALIDATION));
+        try {
+            this.baseUrl = new URI(temp);
+        } catch (URISyntaxException e) {
+            ConsoleWriter.writeln(e);
+            String msg = String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "URL", temp);
+            throw new AutomicException(msg);
+        }
+        if (skipCertValidation) {
+            skipCertValidation = Constants.HTTPS.equalsIgnoreCase(baseUrl.getScheme());
+        }
+    }
 
-			this.username = getOptionValue("username");
-			TDMValidator.checkNotEmpty(username, "Username for Login into TDM Portal");
+    /**
+     * Method to execute the action.
+     *
+     * @throws AutomicException
+     */
+    protected abstract void executeSpecific() throws AutomicException;
 
-			this.password = getOptionValue("password");
-			TDMValidator.checkNotEmpty(password, "Password for Login into TDM Portal");
+    /**
+     * Method to initialize Client instance.
+     *
+     * @throws AutomicException
+     *
+     */
+    protected WebResource getClient() throws AutomicException {
+        if (client == null) {
+            client = HttpClientConfig.getClient(this.skipCertValidation);
+            client.addFilter(new GenericResponseFilter());
+        }
+        return client.resource(baseUrl);
+    }
 
-			this.baseUrl = new URI(temp);
+    private void login() throws AutomicException {
 
-			this.skipCertValidation = CommonUtil.convert2Bool(getOptionValue(Constants.SKIP_CERT_VALIDATION));
+        String endpoint = "/TestDataManager/user/login";
 
-		} catch (URISyntaxException e) {
-			ConsoleWriter.writeln(e);
-			String msg = String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "URL", temp);
-			throw new AutomicException(msg);
-		}
-	}
+        // request to rest api
+        WebResource webResource = getClient().path(endpoint);
 
-	/**
-	 * Method to execute the action.
-	 *
-	 * @throws AutomicException
-	 */
-	protected abstract void executeSpecific() throws AutomicException;
+        ConsoleWriter.writeln("Calling url " + webResource.getURI());
 
-	/**
-	 * Method to initialize Client instance.
-	 *
-	 * @throws AutomicException
-	 *
-	 */
-	protected WebResource getClient() throws AutomicException {
-		if (client == null) {
-			client = HttpClientConfig.getClient(this.skipCertValidation);
-			client.addFilter(new GenericResponseFilter());
-		}
-		return client.resource(baseUrl);
-	}
+        ClientResponse response = webResource.header("Authorization", encodeUserNamePasswordToBase64()).post(
+                ClientResponse.class);
 
-	private void login() throws AutomicException {
+        JsonObject jsonObjectResponse = CommonUtil.jsonObjectResponse(response.getEntityInputStream());
 
-		String endpoint = "/TestDataManager/user/login";
+        this.token = (jsonObjectResponse.getString("token") == null ? null : "Bearer "
+                + jsonObjectResponse.getString("token"));
+        if (null == this.token) {
+            throw new AutomicException("Error occured while login into the CA TDM portal,token is empty");
+        }
 
-		// request to rest api
-		WebResource webResource = getClient().path(endpoint);
+    }
 
-		ConsoleWriter.writeln("Calling url " + webResource.getURI());
+    private String encodeUserNamePasswordToBase64() {
+        String usernamepassword = new StringBuffer().append(this.username).append(":").append(this.password).toString();
+        String bytesEncoded = new String(Base64.encode(usernamepassword.getBytes()));
 
-		ClientResponse response = webResource.header("Authorization", encodeUserNamePasswordToBase64())
-				.post(ClientResponse.class);
+        return new StringBuffer().append("Basic ").append(bytesEncoded).toString();
 
-		JsonObject jsonObjectResponse = CommonUtil.jsonObjectResponse(response.getEntityInputStream());
+    }
 
-		this.token = (jsonObjectResponse.getString("token") == null ? null
-				: "Bearer " + jsonObjectResponse.getString("token"));
-		if (null == this.token) {
-			throw new AutomicException("Error occured while login into the CA TDM portal,token is empty");
-		}
+    private void logout() throws AutomicException {
+        String endpoint = "/TestDataManager/user/logout";
 
-	}
+        // request to rest api
+        WebResource webResource = getClient().path(endpoint);
 
-	private String encodeUserNamePasswordToBase64() {
-		String usernamepassword = new StringBuffer().append(this.username).append(":").append(this.password).toString();
-		String bytesEncoded = new String(Base64.encode(usernamepassword.getBytes()));
+        ConsoleWriter.writeln("Calling url " + webResource.getURI());
 
-		return new StringBuffer().append("Basic ").append(bytesEncoded).toString();
+        ClientResponse response = webResource.header("Authorization", this.token)
+                .entity("{\"tokenTobeInvalidated\":null}", MediaType.APPLICATION_JSON).put(ClientResponse.class);
 
-	}
+        ConsoleWriter.writeln(response);
 
-	private void logout() throws AutomicException {
-		String endpoint = "/TestDataManager/user/logout";
-
-		// request to rest api
-		WebResource webResource = getClient().path(endpoint);
-
-		ConsoleWriter.writeln("Calling url " + webResource.getURI());
-
-		ClientResponse response = webResource.header("Authorization", this.token)
-				.entity("{\"tokenTobeInvalidated\":null}", MediaType.APPLICATION_JSON).put(ClientResponse.class);
-
-		ConsoleWriter.writeln(response);
-
-	}
+    }
 
 }

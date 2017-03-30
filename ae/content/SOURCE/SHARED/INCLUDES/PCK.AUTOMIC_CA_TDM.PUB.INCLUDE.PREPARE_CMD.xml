@@ -8,7 +8,7 @@
 </HEADER>
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[
-: SET &UC4RB_TDM_CMD# = "java -jar &UC4RB_TDM_PATH_JAR#"
+: SET &UC4RB_TDM_CMD# = 'java -jar "&UC4RB_TDM_PATH_JAR#"'
 : SET &UC4RB_TDM_CMD# = STR_CAT(&UC4RB_TDM_CMD#, " -action &ACTION_NAME#")
 
 ! Add Base url

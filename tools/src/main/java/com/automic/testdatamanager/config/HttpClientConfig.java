@@ -26,61 +26,61 @@ import com.sun.jersey.client.urlconnection.HTTPSProperties;
  */
 public final class HttpClientConfig {
 
-	private HttpClientConfig() {
-	}
+    private HttpClientConfig() {
+    }
 
-	public static Client getClient(boolean skipSSLValidation) throws AutomicException {
-		Client client;
+    public static Client getClient(boolean skipSSLValidation) throws AutomicException {
+        Client client;
 
-		ClientConfig config = new DefaultClientConfig();
-		int connectionTimeOut = CommonUtil.getEnvParameter(Constants.ENV_CONNECTION_TIMEOUT,
-				Constants.CONNECTION_TIMEOUT);
-		ConsoleWriter.writeln("Using Connection timeout as " + connectionTimeOut + " (ms)");
-		int readTimeOut = CommonUtil.getEnvParameter(Constants.ENV_READ_TIMEOUT, Constants.READ_TIMEOUT);
-		ConsoleWriter.writeln("Using Read timeout as " + readTimeOut + " (ms)");
-		if (skipSSLValidation) {
-			config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
-		} else {
-			config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
-			config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
-			config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
-		}
+        ClientConfig config = new DefaultClientConfig();
+        int connectionTimeOut = CommonUtil.getEnvParameter(Constants.ENV_CONNECTION_TIMEOUT,
+                Constants.CONNECTION_TIMEOUT);
+        ConsoleWriter.writeln("Using Connection timeout as " + connectionTimeOut + " (ms)");
+        int readTimeOut = CommonUtil.getEnvParameter(Constants.ENV_READ_TIMEOUT, Constants.READ_TIMEOUT);
+        ConsoleWriter.writeln("Using Read timeout as " + readTimeOut + " (ms)");
+        if (skipSSLValidation) {
+            config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
+        } else {
+            config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
+            config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
+            config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
+        }
 
-		client = Client.create(config);
+        client = Client.create(config);
 
-		return client;
-	}
+        return client;
+    }
 
-	private static HTTPSProperties skipValidation() throws AutomicException {
+    private static HTTPSProperties skipValidation() throws AutomicException {
 
-		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-				return null;
-			}
+        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
 
-			public void checkClientTrusted(X509Certificate[] certs, String authType) {
-			}
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            }
 
-			public void checkServerTrusted(X509Certificate[] certs, String authType) {
-			}
-		} };
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            }
+        } };
 
-		// Create all-trusting host name verifier
-		HostnameVerifier allHostsValid = new HostnameVerifier() {
-			public boolean verify(String hostname, SSLSession session) {
-				return true;
-			}
-		};
-		// Install the all-trusting trust manager
-		try {
-			SSLContext sc = SSLContext.getInstance("SSL");
-			sc.init(null, trustAllCerts, new java.security.SecureRandom());
-			HTTPSProperties props = new HTTPSProperties(allHostsValid, sc);
-			return props;
-		} catch (KeyManagementException | NoSuchAlgorithmException e) {
-			ConsoleWriter.writeln(e);
-			throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT);
-		}
-	}
+        // Create all-trusting host name verifier
+        HostnameVerifier allHostsValid = new HostnameVerifier() {
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        };
+        // Install the all-trusting trust manager
+        try {
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HTTPSProperties props = new HTTPSProperties(allHostsValid, sc);
+            return props;
+        } catch (KeyManagementException | NoSuchAlgorithmException e) {
+            ConsoleWriter.writeln(e);
+            throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT);
+        }
+    }
 
 }

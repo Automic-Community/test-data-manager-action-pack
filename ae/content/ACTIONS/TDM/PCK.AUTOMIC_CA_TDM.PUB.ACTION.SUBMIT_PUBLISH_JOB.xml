@@ -369,32 +369,42 @@ This action is used to submit the data to publish in TDM.Publishing data means c
 (none)
 
 = Logging =
-AE logs will be displayed in the AE report.
+Logs will be displayed in the AE report.
 
 = Example =
+Please make sure that specified scheduledTime should be future time.
 Sample Configuration (JSON)::
-{ 
-"name":"Publish_SpartanProfile_BookGenerator",
-"projectId":2346,
-"scheduledTime": "2017-03-16T11:38:00Z",  
-"type":"PUBLISHJOB",
-"origin":"generation",
-"jobs":[],
-
-"parameters":{
-"variableDefaults":[],
-"generatorId":2356,
-"jobType":"PUBLISH",
-"title":"Publish to SpartanProfile using BookGenerator",
-"publishTo":"TGT",
-"repeatCount":"10",
-"tables":[{"tableNo":2,"tableName":"books_tdm_root","status":1},{"tableNo":5,"tableName":"book","status":1}],
-"actionOnDuplicate":"continue",
-"actionOnGenDuplicate":"remove",
-"target":"BookList_628",
-"dataTargetProfile":"SpartanProfile"
-}
-
+{
+  "name": "Publish_SpartanProfile_BookGenerator",
+  "projectId": 2346,
+  "scheduledTime": "2017-03-16T11:38:00Z",
+  "type": "PUBLISHJOB",
+  "origin": "generation",
+  "jobs": [],
+  "parameters": {
+    "variableDefaults": [],
+    "generatorId": 2356,
+    "jobType": "PUBLISH",
+    "title": "Publish to SpartanProfile using BookGenerator",
+    "publishTo": "TGT",
+    "repeatCount": "10",
+    "tables": [
+      {
+        "tableNo": 2,
+        "tableName": "books_tdm_root",
+        "status": 1
+      },
+      {
+        "tableNo": 5,
+        "tableName": "book",
+        "status": 1
+      }
+    ],
+    "actionOnDuplicate": "continue",
+    "actionOnGenDuplicate": "remove",
+    "target": "BookList_628",
+    "dataTargetProfile": "SpartanProfile"
+  }
 }
 ]]></DOC>
 </DOCU_Docu>

@@ -9,8 +9,8 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[! --------------- JSON file path -----------------------------------------
 :  SET &AGENT_CURR_DIR# = GET_VAR('UC_EX_PATH_TEMP', &AGENT#)
-:  SET &UC4RB_TDM_FILENAME# = "&$TOP_PROCESSFLOW_RUNID#.JSON"
-:  set &UC4RB_TDM_JSON_FILE_PATH# = STR_CAT(&AGENT_CURR_DIR#,&UC4RB_TDM_FILENAME#)
+:  SET &UC4RB_TDM_FILENAME# = "TDM&$RUNID#.JSON"
+:  PSET &UC4RB_TDM_JSON_FILE_PATH# = STR_CAT(&AGENT_CURR_DIR#,&UC4RB_TDM_FILENAME#)
 
 ! ----------------- Writing JSON File-------------------------------------
 :    PRINT &UC4RB_TDM_CONFIG_JSON#
@@ -20,13 +20,7 @@
 :    CLOSE_PROCESS &HND#
 :    IF &RET# > 0
 :      PRINT "Error in writing file to path : &UC4RB_TDM_JSON_FILE_PATH#"
-:    ENDIF
-!Normalizing path
-:SET &UC4RB_CONVERTED_STRING# = &UC4RB_TDM_JSON_FILE_PATH#
-:INC PCK.AUTOMIC_FILESYSTEM.PUB.INCLUDE.NORMALIZE_PATH
-:SET &UC4RB_TDM_JSON_FILE_PATH# = &UC4RB_CONVERTED_STRING#
-:PUBLISH &UC4RB_TDM_JSON_FILE_PATH#,,"WORKFLOW"
-]]></MSCRI>
+:    ENDIF]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[This includes creates a json file.]]></DOC>
