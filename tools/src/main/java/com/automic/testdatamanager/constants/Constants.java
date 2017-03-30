@@ -22,7 +22,7 @@ public class Constants {
     public static final String ONE = "1";
     public static final String USERNAME = "username";
 
-    public static final String PASSWORD = "password";
+    public static final String ENV_PASSWORD = "UC4_DECRYPTED_PWD";
 
     public static final String SKIP_CERT_VALIDATION = "ssl";
     public static final String ENV_CONNECTION_TIMEOUT = "ENV_CONNECTION_TIMEOUT";

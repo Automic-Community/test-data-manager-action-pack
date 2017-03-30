@@ -52,9 +52,7 @@ public abstract class AbstractHttpAction extends AbstractAction {
     public AbstractHttpAction() {
         addOption(Constants.BASE_URL, true, "TDM Portal URL");
         addOption(Constants.USERNAME, true, "Username for Login into TDM Portal");
-        addOption(Constants.PASSWORD, true, "Password for Login into TDM Portal");
         addOption(Constants.SKIP_CERT_VALIDATION, false, "Skip SSL validation");
-
     }
 
     /**
@@ -87,7 +85,7 @@ public abstract class AbstractHttpAction extends AbstractAction {
         this.username = getOptionValue("username");
         TDMValidator.checkNotEmpty(username, "Username for Login into TDM Portal");
 
-        this.password = getOptionValue("password");
+        this.password = System.getenv(Constants.ENV_PASSWORD);
         this.skipCertValidation = CommonUtil.convert2Bool(getOptionValue(Constants.SKIP_CERT_VALIDATION));
         try {
             this.baseUrl = new URI(temp);
