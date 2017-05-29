@@ -1,15 +1,7 @@
-# Package Build Configuration
+# Package Build Configuration 
 name: PCK.AUTOMIC_CA_TDM
 
 source: ae/content
 appdata: ae/appdata
- 
-# binary object resource mapping will be defined here
-binaries:
   
-  - object: RESOURCES/LIBS/PCK.AUTOMIC_CA_TDM.PRV.STORE
-    resources: 
-      - name: TDMTOOL
-        type: BINARY
-        path: tools/target/tdm-tool.jar
-        version: 1.0.0
+ 
