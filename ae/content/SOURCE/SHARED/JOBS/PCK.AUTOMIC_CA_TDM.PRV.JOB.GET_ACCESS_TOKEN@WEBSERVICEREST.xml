@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBS_CIT AttrType="CIT" name="PCK.AUTOMIC_CA_TDM.PRV.JOB.GET_ACCESS_TOKEN@WEBSERVICEREST">
+<XHEADER state="1">
+<Title>Get Access Token</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<Active>1</Active>
+<OH_SubType/>
+<CustomAttributes KeyListID="0" dataRequestID="0"/>
+</XHEADER>
+<OUTPUTREG state="1">
+<FileReg/>
+</OUTPUTREG>
+<SYNCREF state="1">
+<Syncs/>
+</SYNCREF>
+<ATTR_JOBS state="1">
+<Queue>CLIENT_QUEUE</Queue>
+<StartType/>
+<HostDst>|&lt;CIT&gt;|HOST</HostDst>
+<HostATTR_Type>CIT</HostATTR_Type>
+<CodeName/>
+<Login/>
+<IntAccount/>
+<ExtRepDef>1</ExtRepDef>
+<ExtRepAll>0</ExtRepAll>
+<ExtRepNone>0</ExtRepNone>
+<AutoDeactNo>1</AutoDeactNo>
+<AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
+<AutoDeactErrorFree>0</AutoDeactErrorFree>
+<DeactWhen/>
+<DeactDelay>0</DeactDelay>
+<AutoDeactAlways>0</AutoDeactAlways>
+<AttDialog>0</AttDialog>
+<ActAtRun>0</ActAtRun>
+<Consumption>0</Consumption>
+<UC4Priority>0</UC4Priority>
+<MaxParallel2>0</MaxParallel2>
+<MpElse1>0</MpElse1>
+<MpElse2>1</MpElse2>
+<TZ/>
+</ATTR_JOBS>
+<ATTR_CIT state="1">
+<OutputDb>1</OutputDb>
+<OutputDbErr>0</OutputDbErr>
+<OutputFile>0</OutputFile>
+<OptReportPLOG>1</OptReportPLOG>
+<RequTaskParams>0</RequTaskParams>
+</ATTR_CIT>
+<CIT state="2">
+<citcont agentname="&lt;CIT&gt;" jobtype="WEBSERVICEREST" text="Web Service Rest">
+<cit cittype="2" icon="" id="" subtype="REST" text="REST Web Service">
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_aws_accesskey"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_aws_secret_accesskey"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_aws_sign_version"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_basic_host"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_basic_password"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_basic_port"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_basic_preemptive"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_basic_realm"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_basic_username"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_method"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_clientkey"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_clientsecret"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_refresh_token"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_refresh_uri"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_signature_type"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_token"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_token_secret"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_verifier"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_auth_oauth_version_method"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_connection_timeout"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_endpoint_url"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_follow_redirects"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_from_prompts"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_auth_method"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_host"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_password"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_port"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_realm"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_type"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_proxy_username"/>
+<component con="0" enc="0" type="2" value="" xmlName="conn_read_timeout"/>
+<component con="0" enc="0" type="2" value="30" xmlName="connectTimeout"/>
+<component con="0" enc="0" type="2" value="" xmlName="curl"/>
+<component con="0" enc="0" type="2" value="" xmlName="file"/>
+<component con="0" enc="0" type="2" value="Accept" xmlName="header_0_0"/>
+<component con="0" enc="0" type="2" value="application/json" xmlName="header_0_1"/>
+<component con="0" enc="0" type="2" value="false" xmlName="isCurl"/>
+<component con="0" enc="0" type="2" value="false" xmlName="jobHeaders"/>
+<component con="0" enc="0" type="2" value="false" xmlName="jobQuery"/>
+<component con="0" enc="0" type="2" value="application/json" xmlName="mediaType"/>
+<component con="0" enc="0" type="2" value="POST" xmlName="method"/>
+<component con="0" enc="0" type="2" value="false" xmlName="multiPart"/>
+<component con="0" enc="0" type="2" value="false" xmlName="multiPartResp"/>
+<component con="0" enc="0" type="2" value="Part 1" xmlName="partName"/>
+<component con="0" enc="0" type="2" value="application/json" xmlName="request_part_0_mediaType"/>
+<component con="0" enc="0" type="2" value="Part 1" xmlName="request_part_0_partName"/>
+<component con="0" enc="0" type="2" value="text" xmlName="request_part_0_requestDataSource"/>
+<component con="0" enc="0" type="2" value="text" xmlName="requestDataSource"/>
+<component con="0" enc="0" type="2" value="false" xmlName="requestReports"/>
+<component con="0" enc="0" type="2" value="TestDataManager/user/login" xmlName="resource"/>
+<component con="0" enc="0" type="2" value="" xmlName="response_part_0_file"/>
+<component con="0" enc="0" type="2" value="$token" xmlName="response_part_0_script_0_code_0"/>
+<component con="0" enc="0" type="2" value="JSONPath" xmlName="response_part_0_script_0_queryType"/>
+<component con="0" enc="0" type="2" value="UC4RB_TDM_TOKEN#" xmlName="response_part_0_script_0_resourceName"/>
+<component con="0" enc="0" type="2" value="variable" xmlName="response_part_0_script_0_saveTo"/>
+<component con="0" enc="0" type="2" value="false" xmlName="response_part_0_script_0_useArray"/>
+<component con="0" enc="0" type="2" value="false" xmlName="responseReport"/>
+<component con="0" enc="0" type="2" value="60" xmlName="responseTimeout"/>
+<component con="0" enc="0" type="2" value="true" xmlName="responseToJobLog"/>
+<component con="1" enc="0" type="2" value="" xmlName="restConnection"/>
+<component con="0" enc="0" type="2" value="false" xmlName="tracePerformance"/>
+<component con="0" enc="0" type="2" value="" xmlName="uriOverride"/>
+</cit>
+<cit cittype="3" icon="" id="" subtype="GENERALJOBPANELDEF" text="General Job Panel"/>
+</citcont>
+</CIT>
+<RUNTIME state="1">
+<MaxRetCode>0</MaxRetCode>
+<MrcExecute/>
+<MrcElseE>0</MrcElseE>
+<FcstStatus>0| |</FcstStatus>
+
+<ErtMethodDef>1</ErtMethodDef>
+<ErtMethodFix>0</ErtMethodFix>
+<ErtFix>0</ErtFix>
+<ErtDynMethod>2|Average</ErtDynMethod>
+<ErtMethodDyn>0</ErtMethodDyn>
+<ErtCnt>0</ErtCnt>
+<ErtCorr>0</ErtCorr>
+<ErtIgn>0</ErtIgn>
+<ErtIgnFlg>0</ErtIgnFlg>
+<ErtMinCnt>0</ErtMinCnt>
+<MrtMethodNone>1</MrtMethodNone>
+<MrtMethodFix>0</MrtMethodFix>
+<MrtFix>0</MrtFix>
+<MrtMethodErt>0</MrtMethodErt>
+<MrtErt>0</MrtErt>
+<MrtMethodDate>0</MrtMethodDate>
+<MrtDays>0</MrtDays>
+<MrtTime>00:00</MrtTime>
+<MrtTZ/>
+<SrtMethodNone>1</SrtMethodNone>
+<SrtMethodFix>0</SrtMethodFix>
+<SrtFix>0</SrtFix>
+<SrtMethodErt>0</SrtMethodErt>
+<SrtErt>0</SrtErt>
+<MrtCancel>0</MrtCancel>
+<MrtExecute>0</MrtExecute>
+<MrtExecuteObj/>
+</RUNTIME>
+<DYNVALUES state="1">
+<dyntree>
+<node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
+<VALUE state="1">
+<Values/>
+<Mode>0</Mode>
+</VALUE>
+</node>
+</dyntree>
+</DYNVALUES>
+<ROLLBACK state="1">
+<RollbackFlag>0</RollbackFlag>
+<CBackupObj/>
+<CRollbackObj/>
+<FBackupPath/>
+<FDeleteBefore>0</FDeleteBefore>
+<FInclSubDirs>0</FInclSubDirs>
+</ROLLBACK>
+<PRE_SCRIPT mode="1" replacementmode="1" state="1">
+<PSCRI><![CDATA[:INC PCK.AUTOMIC_RA_REST.PUB.INCLUDE.PREPARE_RA_JOB
+:INC PCK.AUTOMIC_RA_REST.PUB.INCLUDE.SET_CONNECTION_AUTH_BASIC
+
+]]></PSCRI>
+</PRE_SCRIPT>
+<SCRIPT mode="1" state="1">
+<MSCRI/>
+</SCRIPT>
+<OUTPUTSCAN state="1">
+<Inherit>N</Inherit>
+<filterobjects/>
+<HostFsc/>
+<LoginFsc/>
+</OUTPUTSCAN>
+<POST_SCRIPT mode="1" replacementmode="1" state="1">
+<OSCRI/>
+</POST_SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBS_CIT>
+</uc-export>
