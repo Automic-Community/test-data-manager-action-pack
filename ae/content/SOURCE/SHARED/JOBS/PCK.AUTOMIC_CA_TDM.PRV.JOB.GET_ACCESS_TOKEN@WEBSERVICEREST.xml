@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_CIT AttrType="CIT" name="PCK.AUTOMIC_CA_TDM.PRV.JOB.GET_ACCESS_TOKEN">
+<JOBS_CIT AttrType="CIT" name="PCK.AUTOMIC_CA_TDM.PRV.JOB.GET_ACCESS_TOKEN@WEBSERVICEREST">
 <XHEADER state="1">
 <Title>Get Access Token</Title>
 <ArchiveKey1/>
