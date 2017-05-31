@@ -35,7 +35,7 @@ Get Publish Job Status Template
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK. Value of this variable should be OK or NOK.
     ...    -${JobID}: This field provide Publish Job ID to get status
     Init Action    ${_GET_PUBLISH_JOB_STATUS_ACTION}
-    Connect To Blazemeter
+    Connect To TDM
     Run Keyword If    '${Job_ID}' == 'Invalid'    Action Set    &UC4RB_TDM_JOBID#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_TDM_JOBID#    ${Job_ID}
     Action Execute

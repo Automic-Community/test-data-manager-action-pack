@@ -118,7 +118,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_CA_TDM.PRV.JOB.GET_ACCESS_TOKEN" ParentAlias="" ParentObject="" Row="2" Text2="">
+<task Alias="" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_CA_TDM.PRV.JOB.GET_ACCESS_TOKEN@@WEBSERVICEREST" ParentAlias="" ParentObject="" Row="2" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -656,7 +656,7 @@
 PCK.AUTOMIC_CA_TDM.PUB.ACTION.SUBMIT_PUBLISH_JOB
 
 = General description =
-This action is used to submit the data to publish in TDM.Publishing data means creating data in the target database schema or files. When you publish data, the data is generated based on the data generation rules that you define, and the data is added to the tables in the target database schema or files. The target database schema is the connection profile that you select at the time of publishing. The target table must already exist in the schema for the publish to work.
+This action is used to submit the data to publish in TDM. Publishing data means creating data in the target database schema or files. When you publish data, the data is generated based on the data generation rules that you define, and the data is added to the tables in the target database schema or files. The target database schema is the connection profile that you select at the time of publishing. The target table must already exist in the schema for the publish to work.
 
 = Failure Conditions =
 (none)
@@ -664,7 +664,7 @@ This action is used to submit the data to publish in TDM.Publishing data means c
 = Inputs =
 --Endpoint--
 * URL Endpoint                 : This URL specifies the entry point of the REST service. For example, http://localhost/ARA/api/data/v1/ is the URL Endpoint of the ARA REST API.  The relative resource location (specified on the request tab) is 
-                                                appended to this URL during runtime such as, http://localhost/ARA/api/data/v1/content 
+                                                appended to this URL during runtime such as, http://localhost/ARA/api/data/v1/content E.g https://192.168.44.42:8443
 
 --Authentication Basic --
 * User Name                      : The user name.
