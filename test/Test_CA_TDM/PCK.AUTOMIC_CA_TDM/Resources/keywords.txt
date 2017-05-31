@@ -6,16 +6,10 @@ Connect AE
     Action Connect    ${_AE_HOST}    ${_AE_PORT}    ${_AE_USER}    ${_AE_PASS}    ${_AE_TEMP_FOLD}
 
 Set Overwrite Agent
-    Run Keyword If    '${ENV}' == 'WIN'    Set Overwrite Agent WIN
-    Run Keyword If    '${ENV}' == 'UNIX'    Set Overwrite Agent UNIX
+    Run Keyword If    '${ENV}' == 'WIN'    Set Overwrite Agent RA
 
-Set Overwrite Agent WIN
-    Action Set    &AGENT#    ${_PROMPTSET_AGENT_WIN}
-    Action Set    &LOGIN#    ${_PROMPTSET_LOGIN_WIN}
-
-Set Overwrite Agent UNIX
-    Action Set    &AGENT#    ${_PROMPTSET_AGENT_UNIX}
-    Action Set    &LOGIN#    ${_PROMPTSET_LOGIN_UNIX}
+Set Overwrite Agent RA
+    Action Set    &OVERWRITE_RA_AGENT_PROMPT#    ${_PROMPTSET_AGENT_RA}
 
 Action Report Should Contain
     [Arguments]    ${text}
@@ -55,6 +49,11 @@ Action Return Status Should Be
     ${returnStatus}=    Action Get Variable    Status
     Should Be Equal    ${returnStatus}    ${status}
 
+Action Return Status Should Not Be
+    [Arguments]    ${status}
+    ${returnStatus}=    Action Get Variable    Status
+    Should Not Be Equal    ${returnStatus}    ${status}
+
 Action Object Variable File Path Should Be
     [Arguments]    ${Variable_Name}    ${File_name}
     ${File_path}=    Action Get Variable    ${Variable_Name}
@@ -79,17 +78,17 @@ Action Object Variable Should Not Be Found
 
 Assert Success
     Action Report Should Be Found
-    Action Report Should Contain    EXECUTED SUCCESSFULLY
+    #    Action Report Should Contain    RESTful job complete
     Action Return Status Should Be    ${ENDED_OK}
     Action Return Code Should Be    ${RETURN_CODE_SUCCESS}
 
 Assert Failure
     ${report} =    Action Get Report
     ${length} =    Get Length    ${report}
-    Run Keyword If    '${length}' > '4'    Action Return Status Should Be    ${ENDED_NOT_OK}
-    Run Keyword If    '${length}' > '4'    Action Return Code Should Not Equal    ${RETURN_CODE_SUCCESS}
-    Run Keyword If    '${length}' > '4'    Action Report Should Contain    ACTION FAILED
-    Run Keyword If    '${length}' == '0' or '${length}' == '4'    Log    "------AE Report is not generated------"
+    Run Keyword If    '${length}' > '4'    Action Return Status Should Not Be    ${ENDED_OK}
+    #    Run Keyword If    '${length}' > '4'    Action Return Code Should Not Equal    ${RETURN_CODE_SUCCESS}
+    #    Run Keyword If    '${length}' > '4'    Action Report Should Contain    ACTION FAILED
+    # Run Keyword If    '${length}' == '0' or '${length}' == '4'    Log    "------AE Report is not generated------"
 
 Generate String
     ${Generated_Name}    Generate Random String    8    [LOWER]
@@ -103,7 +102,6 @@ Init Action
     Set Overwrite Agent
 
 Connect To TDM
-    Action Set    &UC4RB_TDM_BASE_URL#    ${TDM_URL}
-    Action Set    &UC4RB_TDM_USERNAME#    ${Username}
-    Action Set    &UC4RB_TDM_PASSWORD#    ${Password}
-    Action Set    &UC4RB_TDM_SSL_VALIDATION#    ${SkipSSL}
+    Action Set    &CONN_ENDPOINT_URL#    ${TDM_URL}
+    Action Set    &CONN_AUTH_BASIC_USERNAME#    ${Username}
+    Action Set    &CONN_AUTH_BASIC_PASSWORD#    ${Password}
