@@ -696,8 +696,7 @@ This action is used to get the status of a publish job.
 * UC4RB_TDM_JOBSTATUS : Publish Job Status
 
 = Outputs =
-* Return code is 0 in case of success.
-* Return code is 1 in case of failure.
+
 
 = Rollback =
 (none)
