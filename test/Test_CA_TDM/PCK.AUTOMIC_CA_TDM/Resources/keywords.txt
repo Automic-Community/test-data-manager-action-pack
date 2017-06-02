@@ -86,7 +86,7 @@ Assert Failure
     ${report} =    Action Get Report
     ${length} =    Get Length    ${report}
     Run Keyword If    '${length}' > '4'    Action Return Status Should Not Be    ${ENDED_OK}
-    #    Run Keyword If    '${length}' > '4'    Action Return Code Should Not Equal    ${RETURN_CODE_SUCCESS}
+    Run Keyword If    '${length}' > '4'    Action Return Code Should Not Equal    ${RETURN_CODE_SUCCESS}
     #    Run Keyword If    '${length}' > '4'    Action Report Should Contain    ACTION FAILED
     # Run Keyword If    '${length}' == '0' or '${length}' == '4'    Log    "------AE Report is not generated------"
 
