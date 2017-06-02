@@ -24,9 +24,9 @@
 </ATTR_VARA>
 <VARA state="1">
 <Variables>
-<row Name="Categories" Value="CA Task Data Manager" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="Categories" Value="CA Test Data Manager" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="Company" Value="Automic Software GmbH" Value1="" Value2="" Value3="" Value4=""/>
-<row Name="Dependencies" Value="PCK.ITPA_SHARED ~&gt; 1.1 ,PCK.AUTOMIC_RA_REST~&gt;1.0" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="Dependencies" Value="PCK.AUTOMIC_RA_REST ~&gt; 1.0&#10;" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="Description" Value="Provides integration with CA TDM" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="Homepage" Value="www.automic.com" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="License" Value="Automic License" Value1="" Value2="" Value3="" Value4=""/>
