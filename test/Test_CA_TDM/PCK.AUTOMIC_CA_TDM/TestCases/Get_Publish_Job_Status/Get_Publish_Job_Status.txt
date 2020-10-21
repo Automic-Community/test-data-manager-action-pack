@@ -1,0 +1,47 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        get_publish_job_status
+Test Template     Get Publish Job Status Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    JobID
+Get Publish Job Status with valid Job ID
+                      [Tags]    main_scenarios
+                      OK        ${Job_ID}
+
+Get Publish Job Status with invalid Job ID
+                      NOK       Invalid
+
+Assert Job ID as Mandatory Field
+                      NOK       ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "Get Publish Job Status"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Get Publish Job Status Template
+    [Arguments]    ${OK_NOK}    ${JobID}
+    [Documentation]    This action is used to get the status of a job.
+    ...    -Precondition: To execute valid test, Valid Job ID should be known to user.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK. Value of this variable should be OK or NOK.
+    ...    -${JobID}: This field provide Publish Job ID to get status
+    Generate String
+    Init Action    ${_GET_PUBLISH_JOB_STATUS_ACTION}
+    Connect To TDM
+    Run Keyword If    '${Job_ID}' == 'Invalid'    Action Set    &UC4RB_TDM_JOBID#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_TDM_JOBID#    ${Job_ID}
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_TDM_JOBSTATUS#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_TDM_JOBSTATUS#
+
+Teardown
+    Log    *******End Test "Get Publish Job Status"*******

@@ -1,0 +1,61 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        common_failure_scenarios
+Test Template     Common Failure Scenarios Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    ServerURL         Username       Password       JSONContent
+Assertion with Invalid Server URL
+                      [Tags]    main_scenarios
+                      NOK       Invalid           ${Username}    ${Password}    ${JSON_Content}
+
+Assertion with invalid Username
+                      NOK       ${TDM_URL}        Invalid        ${Password}    ${JSON_Content}
+
+Assertion with invalid Password
+                      NOK       ${TDM_URL}        ${Username}    Invalid        ${JSON_Content}
+
+Assert Server URL as mandatory field
+                      NOK       ${EMPTY}          ${Username}    ${Password}    ${JSON_Content}
+
+Assert Username as mandatory field
+                      NOK       ${TDM_URL}        ${EMPTY}       ${Password}    ${JSON_Content}
+
+Assert Password as mandatory field
+                      NOK       ${TDM_URL}        ${Username}    ${EMPTY}       ${JSON_Content}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "COMMON FAILURE SCENARIOS"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Common Failure Scenarios Template
+    [Arguments]    ${OK_NOK}    ${ServerURL}    ${Username}    ${Password}    ${JSONContent}
+    [Documentation]    This test executes the common failure scenarios for action pack with submit publish job action.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK, NOK.
+    ...    -${ServerURL}: This field specifies address to the TDM server.
+    ...    -${Username}: This field specifies username for authentication
+    ...    -${Password}: This field specifies password for authentication
+    ...    -${JSONContent}: This field specifies the JSON Content used for generating test data.
+    Generate String
+    Init Action    ${_SUBMIT_PUBLISH_JOB_ACTION}
+    Run Keyword If    '${ServerURL}' == 'Invalid'    Action Set    &CONN_ENDPOINT_URL#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &CONN_ENDPOINT_URL#    ${ServerURL}
+    Run Keyword If    '${Username}' == 'Invalid'    Action Set    &CONN_AUTH_BASIC_USERNAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &CONN_AUTH_BASIC_USERNAME#    ${Username}
+    Run Keyword If    '${Password}' == 'Invalid'    Action Set    &CONN_AUTH_BASIC_PASSWORD#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &CONN_AUTH_BASIC_PASSWORD#    ${Password}
+    Action Set    &UC4RB_TDM_JSON_CONTENT#    ${JSONContent}
+    Action Execute
+    Assert Failure
+
+Teardown
+    Log    *******End Test "COMMON FAILURE SCENARIOS"*******
